@@ -1,3 +1,15 @@
+def best_move(board):
+    #TODO: Add a working code to play best move
+    #return a string of 2 characters each from 0 to 2
+
+    #Bad algorithm:
+    for i in range(3):
+        for j in range(3):
+            if board[i][j]=="_":
+                return str(i)+str(j)
+def check(board,turn):
+    #TODO: Check for win, loss or draw
+    pass
 print("Welcome to Tic Tac Toe!")
 print("This is a 3x3 board. Enter the coordinates of the square you want to place your X or O in.")
 print("The first player to get three in a row wins!")
@@ -27,6 +39,7 @@ while True:
                 broke=True
                 break
     elif turn==1:
+        move=best_move(board)
         board[int(move[0])][int(move[1])]="x"
     if broke:
         break
@@ -37,3 +50,4 @@ while True:
         for j in range(3):
             print(board[i][j],end="|")
         print(" ")
+    check(board,turn)
