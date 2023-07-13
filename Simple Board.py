@@ -1,7 +1,13 @@
 def best_move(board):
     #TODO: Add a working code to play best move
     #return a string of 2 characters each from 0 to 2
-
+    '''
+    bestMove=NULL
+    for each legal move on the board:
+        if *currentMove is better than bestMove*:
+            bestMove=currentMove
+    return bestMove
+    '''
     #Bad algorithm:
     for i in range(3):
         for j in range(3):
@@ -10,6 +16,27 @@ def best_move(board):
 def check(board,turn):
     #TODO: Check for win, loss or draw
     pass
+def minimax(board, depth, turn):
+    #minimax(board, depth, turn==1) ??
+    #TODO: Add minimax algorithm
+    """
+    if check(board,turn) returns win, loss or draw:
+        return value of board
+    if turn==1:
+        bestVal = -Infty
+        for each move on Board:
+            value = minimax(board, depth+1, 1-turn)
+            #value = minimax(board, depth+1, 0) also possible??
+            bestVal = max(bestVal, value)
+        return bestVal
+    else:
+        bestVal = +Infty
+        for each move on Board:
+            value = minimax(board, depth+1, 1-turn)
+            #value = minimax(board, depth+1, 1) also possible??
+            bestVal = min(bestVal, value)
+        return bestVal            
+    """
 print("Welcome to Tic Tac Toe!")
 print("This is a 3x3 board. Enter the coordinates of the square you want to place your X or O in.")
 print("The first player to get three in a row wins!")
@@ -50,4 +77,11 @@ while True:
         for j in range(3):
             print(board[i][j],end="|")
         print(" ")
-    check(board,turn)
+    response=check(board,turn)
+    '''
+    if response= win, loss or draw:
+        Declare the winner
+        break
+    else:
+        continue
+    '''
