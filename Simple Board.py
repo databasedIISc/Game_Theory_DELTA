@@ -11,17 +11,26 @@ print(" ")
 print(" ")
 board=[["_","_","_"],["_","_","_"],["_","_","_"]]
 turn=0
+broke=False
 while True:
-    n=input("move:")
-    if board[int(n[0])][int(n[1])]!="_":
-        print("That space is already taken!")
-        continue
-    else:
-        if turn==0:
-            board[int(n[0])][int(n[1])]="o"
-        else:
-            board[int(n[0])][int(n[1])]="x"
-        turn=1-turn
+    if turn==0:
+        n=input("Your move:")
+        while True:
+            if n!="quit":
+                if board[int(n[0])][int(n[1])]!="_":
+                    print("That space is already taken!")
+                    n=input("Your move:")
+                else:    
+                    board[int(n[0])][int(n[1])]="o"
+                    break
+            else:
+                broke=True
+                break
+    elif turn==1:
+        board[int(move[0])][int(move[1])]="x"
+    if broke:
+        break
+    turn=1-turn
     print(" _ _ _")
     for i in range(3):
         print("|",end="")
