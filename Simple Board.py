@@ -23,17 +23,23 @@ def minimax(board, depth, turn):
     if check(board,turn) returns win, loss or draw:
         return value of board
     if turn==1:
+        if depth = diffficulty_depth: #Check TODO: after hardest
+                    return -Infty 
         bestVal = -Infty
         for each move on Board:
             value = minimax(board, depth+1, 1-turn)
             #value = minimax(board, depth+1, 0) also possible??
             bestVal = max(bestVal, value)
+            
         return bestVal
     else:
+        if depth = diffficulty_depth: #Check TODO: after hardest
+                return +Infty 
         bestVal = +Infty
         for each move on Board:
             value = minimax(board, depth+1, 1-turn)
             #value = minimax(board, depth+1, 1) also possible??
+            
             bestVal = min(bestVal, value)
         return bestVal            
     """
