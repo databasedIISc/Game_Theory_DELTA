@@ -21,7 +21,7 @@ def check(board,turn):
                     return "player"
                 else:
                     return "computer"
-    # Checking for Columns for X or O victory. 
+    
     for col in range(3) :
        
         if (board[0][col] == board[1][col] and board[1][col] == board[2][col]) :
@@ -30,7 +30,7 @@ def check(board,turn):
                     return "player"
                 else:
                     return "computer"
-    # Checking for Diagonals for X or O victory. 
+    
     if (board[0][0] == board[1][1] and board[1][1] == board[2][2]) :
         if board[0][0]!="_":
             if turn==1:
