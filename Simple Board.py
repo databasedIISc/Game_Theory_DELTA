@@ -14,8 +14,41 @@ def best_move(board):
             if board[i][j]=="_":
                 return str(i)+str(j)
 def check(board,turn):
-    #TODO: Check for win, loss or draw
-    pass
+    for row in range(3) :     
+        if (board[row][0] == board[row][1] and board[row][1] == board[row][2]) :
+            if board[row][0]!="_":        
+                if turn==1:
+                    return "player"
+                else:
+                    return "computer"
+    # Checking for Columns for X or O victory. 
+    for col in range(3) :
+       
+        if (board[0][col] == board[1][col] and board[1][col] == board[2][col]) :
+            if board[0][col]!="_":
+                if turn==1:
+                    return "player"
+                else:
+                    return "computer"
+    # Checking for Diagonals for X or O victory. 
+    if (board[0][0] == board[1][1] and board[1][1] == board[2][2]) :
+        if board[0][0]!="_":
+            if turn==1:
+                    return "player"
+            else:
+                    return "computer"
+  
+    if (board[0][2] == board[1][1] and board[1][1] == board[2][0]) :
+        if board[1][1]!="_":
+            if turn==1:
+                    return "player"
+            else:
+                    return "computer"
+    for i in range(3):
+        for j in range(3):
+            if board[i][j]=="_":
+                return None
+    return "draw"
 def minimax(board, depth, turn):
     #minimax(board, depth, turn==1) ??
     #TODO: Add minimax algorithm
@@ -83,11 +116,15 @@ while True:
         for j in range(3):
             print(board[i][j],end="|")
         print(" ")
-    response=check(board,turn)
-    '''
-    if response= win, loss or draw:
-        Declare the winner
+    resp=check(board,turn)
+    if resp==None:
+        continue
+    elif resp=="computer":
+        print("You lose!")
+        break
+    elif resp=="player":
+        print("You win!")
         break
     else:
-        continue
-    '''
+        print("Draw")
+        break
