@@ -15,6 +15,24 @@ def best_move(board):
                 return str(i)+str(j)
 def check(board,turn):
     #TODO: Check for win, loss or draw
+    for row in range(3):
+        if board[row][0]==board[row][1] and board[row][1]==board[row][2]:        
+            if board[row][0]=="O":
+                return "Win"
+            return "Lose"
+    for col in range(3):
+        if board[0][col]==board[1][col] and board[1][col]==board[2][col]:
+            if board[0][col]=="O":
+                return "Win"
+            return "Lose"
+    if board[0][0]==board[1][1] and board[1][1]==board[2][2]:
+        if board[0][0]=="O":
+            return "Win"
+        return "Lose"
+    if board[0][2]==board[1][1] and board[1][1]==board[2][0]:      
+        if board[0][0]=="O":
+            return "Win"
+        return "Lose"
     pass
 def minimax(board, depth, turn):
     #minimax(board, depth, turn==1) ??
