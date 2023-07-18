@@ -13,6 +13,21 @@ def best_move(board):
         for j in range(3):
             if board[i][j]=="_":
                 return str(i)+str(j)
+
+""" 
+if board[int(n[0])][0] == board[int(n[0])] and if board[int(n[0])][1] == board[int(n[0])][2]:
+    win
+
+if board[0][int(n[1])] == board[1][int(n[1])] and if board[1][int(n[1])] == board[2][int(n[1])]:
+    win
+    
+if n[0] == n[1]:
+    if board[0][0] == board[1][1] and board[1][1] == board[2][2]:
+        win
+    if board[0][2] == board[1][1] and board[1][1] == board[2][0]:
+        win 
+"""
+    
 def check(board,turn):
     for row in range(3) :     
         if (board[row][0] == board[row][1] and board[row][1] == board[row][2]) :
