@@ -91,6 +91,9 @@ def minimax(board, depth, turn):
             bestVal = min(bestVal, value)
         return bestVal            
     """
+def evaluate(board,turn):
+    #TODO: 
+    pass
 print("Welcome to Tic Tac Toe!")
 print("This is a 3x3 board. Enter the coordinates of the square you want to place your X or O in.")
 print("The first player to get three in a row wins!")
