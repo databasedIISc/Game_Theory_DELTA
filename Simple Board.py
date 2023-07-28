@@ -1,33 +1,3 @@
-def best_move(board):
-    #TODO: Add a working code to play best move
-    #return a string of 2 characters each from 0 to 2
-    '''
-    bestMove=NULL
-    for each legal move on the board:
-        if *currentMove is better than bestMove*:
-            bestMove=currentMove
-    return bestMove
-    '''
-    #Bad algorithm:
-    for i in range(3):
-        for j in range(3):
-            if board[i][j]=="_":
-                return str(i)+str(j)
-
-""" 
-if board[int(n[0])][0] == board[int(n[0])] and if board[int(n[0])][1] == board[int(n[0])][2]:
-    win
-
-if board[0][int(n[1])] == board[1][int(n[1])] and if board[1][int(n[1])] == board[2][int(n[1])]:
-    win
-    
-if n[0] == n[1]:
-    if board[0][0] == board[1][1] and board[1][1] == board[2][2]:
-        win
-    if board[0][2] == board[1][1] and board[1][1] == board[2][0]:
-        win 
-"""
-    
 def check(board,turn):
     for row in range(3) :     
         if (board[row][0] == board[row][1] and board[row][1] == board[row][2]) :
@@ -91,9 +61,87 @@ def minimax(board, depth, turn):
             bestVal = min(bestVal, value)
         return bestVal            
     """
+    score=evaluate(board,turn)
+    if score==10:
+        return score-depth
+    if score==-10:
+        return score+depth
+    if check(board,turn)=="draw":
+        return 0
+    if turn==1:
+        bestVal=-1000
+        for i in range(3):
+            for j in range(3):
+                if board[i][j]=="_":
+                    board[i][j]="x"
+                    value=minimax(board,depth+1,1-turn)
+                    bestVal=max(bestVal,value)
+                    board[i][j]="_"
+
+    else:
+        bestVal=1000
+        for i in range(3):
+            for j in range(3):
+                if board[i][j]=="_":
+                    board[i][j]="o"
+                    value=minimax(board,depth+1,1-turn)
+                    bestVal=min(bestVal,value)
+                    board[i][j]="_"
+    return bestVal
 def evaluate(board,turn):
-    #TODO: 
-    pass
+    for row in range(3) :     
+        if (board[row][0] == board[row][1] and board[row][1] == board[row][2]) :
+            if board[row][0]!="_":        
+                if turn==0:
+                    return 10
+                else:
+                    return -10
+        
+    for col in range(3) :
+       
+        if (board[0][col] == board[1][col] and board[1][col] == board[2][col]) :
+            if board[0][col]!="_":
+                if turn==0:
+                    return 10
+                else:
+                    return -10
+        
+    if (board[0][0] == board[1][1] and board[1][1] == board[2][2]) :
+        if board[0][0]!="_":
+            if turn==0:
+                    return 10
+            else:
+                    return -10
+    
+    if (board[0][2] == board[1][1] and board[1][1] == board[2][0]) :
+        if board[1][1]!="_":
+            if turn==0:
+                    return 10
+            else:
+                    return -10
+    return 0
+def best_move(board):
+    #TODO: Add a working code to play best move
+    #return a string of 2 characters each from 0 to 2
+    '''
+    bestMove=NULL
+    for each legal move on the board:
+        if *currentMove is better than bestMove*:
+            bestMove=currentMove
+    return bestMove
+    '''
+    bestMove=None
+    bestVal=-1000
+    for i in range(3):
+        for j in range(3):
+            if board[i][j]=="_":
+                board[i][j]="x"
+                value=minimax(board,0,0)
+                board[i][j]="_"
+                if value>bestVal:
+                    bestMove=str(i)+str(j)
+                    bestVal=value
+    return bestMove
 print("Welcome to Tic Tac Toe!")
 print("This is a 3x3 board. Enter the coordinates of the square you want to place your X or O in.")
 print("The first player to get three in a row wins!")
@@ -123,6 +171,7 @@ while True:
                 broke=True
                 break
     elif turn==1:
+        print("Computer move:")
         move=best_move(board)
         board[int(move[0])][int(move[1])]="x"
     if broke:
@@ -134,6 +183,7 @@ while True:
         for j in range(3):
             print(board[i][j],end="|")
         print(" ")
+    print(" _ _ _")
     resp=check(board,turn)
     if resp==None:
         continue
